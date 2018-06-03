@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-05-10T12:01:59
+# Project created by QtCreator 2018-05-14T15:33:21
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Playground
+TARGET = Phase_Changer_Game
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    myEllipse.cpp
+    phase_changer.cpp
 
 HEADERS += \
-    myEllipse.h
+    phase_changer.h
 
 FORMS += \
         mainwindow.ui

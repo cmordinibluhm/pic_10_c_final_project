@@ -1,5 +1,5 @@
-#ifndef MYELLIPSE_H
-#define MYELLIPSE_H
+#ifndef PHASE_CHANGER_H
+#define PHASE_CHANGER_H
 
 #include <QGraphicsEllipseItem>
 #include <QObject>
@@ -16,4 +16,5 @@ public slots:
 };
 
 
-#endif // MYELLIPSE_H
+
+#endif // PHASE_CHANGER_H

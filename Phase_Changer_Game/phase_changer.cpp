@@ -1,13 +1,12 @@
-#include "myEllipse.h"
+#include "phase_changer.h"
 #include <QKeyEvent>
 #include <QTimer>
 
 phase_changer::phase_changer() {
     //set size
-    setRect(150,250,50,50);
+    setRect(0,0,50,50);
 
 }
-
 
 void phase_changer::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Left) {
@@ -35,4 +34,5 @@ void phase_changer::keyPressEvent(QKeyEvent *event) {
 void phase_changer::move() {
     //move bullet right
     setPos(x()+10,y());
+
 }

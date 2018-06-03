@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QGraphicsScene>
-#include "myEllipse.h"
+#include "phase_changer.h"
 #include <QGraphicsView>
 
 int main(int argc, char *argv[])
@@ -11,14 +11,14 @@ int main(int argc, char *argv[])
     QGraphicsScene * my_scene = new QGraphicsScene();
 
     //create an item to place in the scene
-    phase_changer * ellipse1 = new phase_changer();
+    phase_changer * player = new phase_changer();
 
     //add the item to the scene
-    my_scene->addItem(ellipse1);
+    my_scene->addItem(player);
 
-    //make ellipse1 focusable
-    ellipse1->setFlag(QGraphicsItem::ItemIsFocusable);
-    ellipse1->setFocus();
+    //make player focusable
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
     //create a second item to place in the scene
     QGraphicsEllipseItem * ellipse2 = new QGraphicsEllipseItem();
@@ -33,8 +33,10 @@ int main(int argc, char *argv[])
     //my-view->setScene(scene);
 
     my_view->show();
-    my_view->setFixedSize(800,600);
-    my_scene->setSceneRect(0,0,800,600);
+    my_view->setFixedSize(1200,600);
+    my_scene->setSceneRect(0,0,1200,600);
+
+    player->setPos(my_view->width()/2,my_view->height() - player->rect().height());
 
     return a.exec();
 }
