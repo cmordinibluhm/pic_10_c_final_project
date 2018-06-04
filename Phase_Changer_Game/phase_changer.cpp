@@ -1,6 +1,7 @@
 #include "phase_changer.h"
 #include <QKeyEvent>
 #include <QTimer>
+#include "surface.h"
 
 phase_changer::phase_changer() {
     //set size
@@ -23,16 +24,21 @@ void phase_changer::keyPressEvent(QKeyEvent *event) {
 
     } else if (event->key() == Qt::Key_Space) {
         //connect
-        QTimer * timer = new QTimer();
-        connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-
-        timer->start(100);
+        QTimer * timer = new QTimer(this);
+        connect(timer, SIGNAL(timeout()), this, SLOT(fall()));
+        timer->start(600);
     }
 
 }
 
-void phase_changer::move() {
-    //move bullet right
-    setPos(x()+10,y());
+void phase_changer::move()
+{
+    setPos(x(),y()+10);
+}
 
+void phase_changer::fall()
+{
+    if (this->collidingItems().isEmpty()) {
+        setPos(x(), y()+10);
+    }
 }

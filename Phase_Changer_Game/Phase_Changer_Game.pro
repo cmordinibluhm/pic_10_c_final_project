@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    phase_changer.cpp
+    phase_changer.cpp \
+    surface.cpp
 
 HEADERS += \
-    phase_changer.h
+    phase_changer.h \
+    surface.h
 
 FORMS += \
         mainwindow.ui

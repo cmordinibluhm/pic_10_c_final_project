@@ -13,6 +13,11 @@ public:
 
 public slots:
     void move();
+    void fall();
+
+signals:
+
+
 };
 
 
