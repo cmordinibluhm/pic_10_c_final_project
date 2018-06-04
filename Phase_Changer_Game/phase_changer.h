@@ -6,6 +6,8 @@
 
 class phase_changer : public QObject, public QGraphicsEllipseItem {
     Q_OBJECT
+private:
+    int phase;
 public:
     phase_changer();
 
@@ -14,6 +16,7 @@ public:
 public slots:
     void move();
     void fall();
+    void rise();
 
 signals:
 

@@ -8,6 +8,7 @@ class surface : public QObject, public QGraphicsRectItem {
    Q_OBJECT
 public:
 
+
 public slots:
 
 };

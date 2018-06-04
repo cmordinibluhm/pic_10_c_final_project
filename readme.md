@@ -55,7 +55,19 @@ D- move right
     Added "The Game" section to readme.me.
     Goal for the day: get gravity and contact force with ground
     This is tough! I've spent several hours researching and trying stuff.
-    After an entire afternoon of scouring forums and documentation, I finally figured out how to enforce collisions! 
+    After an entire afternoon/evening of scouring forums and documentation, I finally figured out how to enforce collisions!
+    
+### Commit 7
+    Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
+    when the player changes state of matter.
+    SOLUTION: The constructor sets up a QTimer and connects its timeout signal the player's slot move(). The player object now has a member variable that tracks
+    what state of matter it is in. If this is solid(1) or liquid(0), then the move() function calls the fall() function, and if it's gas(2), then the move() function calls the
+    rise() function.
+    
+    Maybe I should make a custom collision function that let's me know if it is ontop of, next to, or below whatever it is colliding with.
+    Alternatively I could have different objects for ceilings, floors, and walls (right and left walls) and the player could interact with each differently
+    
+    Also would like to allow for multiple key presses at once, so going diagonally. https://stackoverflow.com/questions/3081091/qt-multiple-key-combo-event
 
 
 ### Resources
