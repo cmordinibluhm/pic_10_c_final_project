@@ -59,6 +59,8 @@ D- move right
     
 ### Commit 7
     Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
+
+    GOAL: Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
     when the player changes state of matter.
     SOLUTION: The constructor sets up a QTimer and connects its timeout signal the player's slot move(). The player object now has a member variable that tracks
     what state of matter it is in. If this is solid(1) or liquid(0), then the move() function calls the fall() function, and if it's gas(2), then the move() function calls the
@@ -68,8 +70,24 @@ D- move right
     Alternatively I could have different objects for ceilings, floors, and walls (right and left walls) and the player could interact with each differently
     
     Also would like to allow for multiple key presses at once, so going diagonally. https://stackoverflow.com/questions/3081091/qt-multiple-key-combo-event
-
-
+    
+### Commit 8
+    GOAL: Now going to work on being able to seamlessly move left or right when rising or falling, without having to release keys.
+    SOLUTION: Changed move right and move left mechanics so that instead of moving with the arrow keys the arrow keys instead change the xvelocity member to -1 or +1.
+    Also added a keyReleaseEvent function to player class that detects when the right or left arrow key is released and sets the xvelocity to 0.
+    In the constructor for the player, the QTimer now not only connects to the move() function (which in turn calls rise() or fall()) but also to the traverse() function
+    which in turn moves left or right based on the xvelocity member.
+    This method of storing the velocity with direction of the player seems to be the way that everyone online recommends/assumes it to be done.
+    
+    Went to Professor Salazar's office hours to ask a few questions and check in. He told me that the project doesn't have to be fancy or perfectly functional since the
+    main point of the project is the learning experience.
+    
+    Regarding collisions, he recommended having some sort of buffer so that when the player jumps ahead by however much, it doesn't accidentally pass the edge of the
+    object and not register a collision.
+    
+    Changes "QTimer timer" to be a member of player class so that its interval can be changed as the type of movement changes.
+    
+    
 ### Resources
 
 YouTube Qt Game Tutorials by Abdullah Aghazada
