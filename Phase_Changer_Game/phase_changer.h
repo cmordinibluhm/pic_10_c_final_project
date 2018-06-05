@@ -10,15 +10,15 @@ class phase_changer : public QObject, public QGraphicsEllipseItem {
 private:
     int phase; //the current state of matter
 
+
+    QTimer * xtimer; //timer for the player's movement
+    QTimer * ytimer;
+
+public:
     int xvelocity; //the horizontal velocity
     int yvelocity; //the vertical velocity
 
-    QTimer * timer; //timer for the player's movement
-
-public:
     phase_changer(); //constructor
-
-
 
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);

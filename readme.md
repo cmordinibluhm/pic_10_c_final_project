@@ -87,6 +87,29 @@ D- move right
     
     Changes "QTimer timer" to be a member of player class so that its interval can be changed as the type of movement changes.
     
+### Commit 9
+    Merged with master before attempting to make sideways collisions. Each question I look up leads to another and I now have exactly 40 tabs open in Chrome.
+    Current approach is to use the itemAt(Position) method to see if there is an item at certain positions within the player...
+    
+    Okay, so after a fruitless effort to change the ymovement to be based on velocity member I decided to make an executive decision on how I'm going to go about collisions.
+    I am passing a pointer to the player to every surface object that is made. Player's x and y velocities are now public. The surface class is composed of four sides identified
+    as right, left, bottom, and top. The surface class has a public slot "collisiondetection" that is connected to a QTimer with an interval of 1 ms. Whenever a left or right
+    surface member collides with the player, the players xvelocity is set to zero. So far this is working quite nicely.
+    
+    I made the sizing for the surface objects depend on the parameters passed which are the same as they would be for a QGraphicsRectItem.
+    
+    One issue that I'd like to work on is that currently I have to add left, right, bottom, and top members individually in main.cpp for each surface object. I try to do it in the
+    constructor with "scene()->addItem(left)" but I get "use of undeclared identifier scene". I am trying to do it like Abdullah does in his tutorial for the bullet item. I don't
+    know what I'm missing...
+    SOLUTION: My surface class wasn't inheriting from QGraphicsRectItem (because I thought that would enforce requirements I didn't want). It turns out I was wrong and once I inherited
+    from QGraphicsRectItem it worked! Well almost. I had to write a separate method "addtoscene" to add the sides of the surface to the scene after the surface itself is added to the
+    scene, since when trying to add them in the constructor the object isn't part of a scene yet so scene() must just return 0.
+    
+    QTransform() returns the identity matrix
+    
+    Surfaces are working great and movement is pretty good too!
+    
+    
     
 ### Resources
 
