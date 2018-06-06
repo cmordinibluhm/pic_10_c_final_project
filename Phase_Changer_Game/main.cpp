@@ -10,28 +10,21 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //creates a scene
     QGraphicsScene * my_scene = new QGraphicsScene();
 
-    //create an item to place in the scene
     phase_changer * player = new phase_changer();
-
-    //add the item to the scene
     my_scene->addItem(player);
 
-    //make player focusable
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
-    //create a second item to place in the scene
+
     QGraphicsEllipseItem * ellipse2 = new QGraphicsEllipseItem();
-    ellipse2->setRect(550,250,50,50);
-    //add the item to the scene
+    ellipse2->setRect(50,50,100,100);
     my_scene->addItem(ellipse2);
 
-    //create a third item to place in the scene
+
     surface * floatingbox = new surface(player,250,250,50,50);
-    //add the item to the scene
     my_scene->addItem(floatingbox);
     floatingbox->addtoscene();
 
@@ -50,6 +43,10 @@ int main(int argc, char *argv[])
     surface * surface_box = new surface(player,100, 250, 50, 50);
     my_scene->addItem(surface_box);
     surface_box->addtoscene();
+
+    surface * bigbox = new surface(player, 600, 350,600, 150);
+    my_scene->addItem(bigbox);
+    bigbox->addtoscene();
 
     //add a view
     QGraphicsView * my_view = new QGraphicsView(my_scene);

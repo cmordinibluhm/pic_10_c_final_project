@@ -15,19 +15,22 @@ surface::surface(phase_changer* player_, int x, int y, int xs, int ys) : player(
       connect(timer,SIGNAL(timeout()),this,SLOT(detectcollision()));
 }
 
-void surface::addtoscene()
-{
+void surface::addtoscene() {
     scene()->addItem(left);
     scene()->addItem(right);
     scene()->addItem(bottom);
     scene()->addItem(top);
 }
 
-void surface::detectcollision()
-{
+void surface::detectcollision() {
     if (left->collidesWithItem(player)){
         player->xvelocity = 0;
     } else if (right->collidesWithItem(player)){
         player->xvelocity = 0;
+    }
+    if (top->collidesWithItem(player)){
+        player->yvelocity = 0;
+    } else if (bottom->collidesWithItem(player)){
+        player->yvelocity = 0;
     }
 }

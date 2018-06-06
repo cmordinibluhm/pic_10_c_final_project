@@ -4,8 +4,8 @@ By Casey Mordini-Bluhm
 ## Table of Contents
 
 - [The Game](#the-game)
-    - Objective
-    - Instructions
+- [Objective](#objective)
+- [Instructions](#instructions)
 - [Project Journal](#project-journal)
     - [Resources](#resources)
     
@@ -14,12 +14,21 @@ By Casey Mordini-Bluhm
 Manipulate your state in order to navigate the obstacles between you and the checkpoint
 
 ### Instructions
-W- become less dense
-S- become more dense
-A- move left
-D- move right
+UP- become less dense
+DOWN- become more dense
+LEFT- move left
+RIGHT- move right
 
 ## Project Journal
+
+### Ideas
+
+Add graphics
+        Escape from laboratory
+Add picture of controls
+Add controls/instruction screen
+Add enemies
+Add blocks that kill you
 
 ### April 10, 2018
     Today I looked at some old PIC 10C final projects on YouTube and had the idea to do a phase changing game.
@@ -105,9 +114,39 @@ D- move right
     from QGraphicsRectItem it worked! Well almost. I had to write a separate method "addtoscene" to add the sides of the surface to the scene after the surface itself is added to the
     scene, since when trying to add them in the constructor the object isn't part of a scene yet so scene() must just return 0.
     
-    QTransform() returns the identity matrix
+    QTransform() returns the identity matrix (needed in the call to itemAt() function I'm using in collisions)
+    https://forum.qt.io/topic/43990/solved-itemat-in-5-3-depreciated
     
     Surfaces are working great and movement is pretty good too!
+    
+### Commit 10
+    Still learning more about git. I've been checking out master before committing changes without realizing that was a problem.
+    https://stackoverflow.com/questions/5531362/why-git-keeps-showing-my-changes-when-i-switch-branches-modified-added-deleted
+    
+    GOAL:   Improve movement. (CHECK)
+            Clean up velocity, phase state, and movement logic. (CHECK)
+            Make it so that the player continues to rise/fall when in contact with a vertical surface. (CHECK)
+    SOLUTION: Created yacceleration member for player. When it was just yvelocity the velocity would be set to zero and then the player wouldn't be able to get off the ground again
+    and the object wouldn't accelerate if it "walked" off of a ledge. Acceleration was a good addition and the fact that I didn't have it before is indicative of how I have been
+    figuring this out as I go along. The right/best way to do it is clearly with actual concepts from phsyics, and it is cool that I am heading that direction organically as
+    I troubleshoot and solve issues.
+    Removed the move() and rise() functions to that now the y-movement is linked just to fall(), and the x-movement is linked just to traverse(), rather than the y-movement being
+    linked to move() which in turn called rise() or traverse().
+    Wrote a surface::addtoscene() function to add the left, right, top, and bottom faces of a surface object to a scene.
+    
+    The movement and collisions are working great!!
+    The player no longer collides with standard QGraphicsItems, but only my own custom surface items(this is a good thing). The player accelerates when an obstruction is removed
+    and can slide against walls when floating upward or falling downward.
+    
+    BUGS:   By repeatedly switching between up and down you can embed youself into a surface.
+            If you go at a corner of a surface you can get inside of it.
+            
+    For the last two days git had refused to push to my remote repo. Every time I tried "git commmit -u origin master" the terminal froze. I tried several fixes recommended
+    online and nothing worked, but I tried the same command again after a few days and the push was successful! I don't know if it was a wifi-strength or network thing or what.
+    
+    Hard deadline is Monday in the week after finals.
+    Post a video on YouTube.
+            
     
     
     
@@ -121,3 +160,6 @@ http://commonmark.org/help/tutorial/index.html
 
 Signals and Slots Explanation
 https://doc.qt.io/archives/qt-4.8/signalsandslots.html
+
+Collision Detection Thread
+https://forum.qt.io/topic/21047/collision-detection
