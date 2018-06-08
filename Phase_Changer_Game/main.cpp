@@ -5,12 +5,17 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <QDebug>
+#include <QBrush>
+#include <QImage>
+#include <QMediaPlayer>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     QGraphicsScene * my_scene = new QGraphicsScene();
+    //my_scene->setBackgroundBrush(QBrush(QImage(":/images/blackhole.jpg")));
+    my_scene->setBackgroundBrush(QBrush(QImage(":/images/stars.jpg")));
 
     phase_changer * player = new phase_changer();
     my_scene->addItem(player);
@@ -18,35 +23,35 @@ int main(int argc, char *argv[])
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+//    QGraphicsPixmapItem * sun = new QGraphicsPixmapItem();
+//    sun->setPixmap(QPixmap(":/images/sun.png").scaled(200,200));
+//    sun->setPos(50,50);
 
-    QGraphicsEllipseItem * ellipse2 = new QGraphicsEllipseItem();
-    ellipse2->setRect(50,50,100,100);
-    my_scene->addItem(ellipse2);
+//    my_scene->addItem(sun);
+
+    QGraphicsPixmapItem * sundragon = new QGraphicsPixmapItem();
+    sundragon->setPixmap(QPixmap(":/images/sundragon.png").scaled(200,200));
+    sundragon->setPos(50,50);
+
+    my_scene->addItem(sundragon);
 
 
-    surface * floatingbox = new surface(player,250,250,50,50);
-    my_scene->addItem(floatingbox);
-    floatingbox->addtoscene();
 
-    surface * box = new surface(player,350,450,50,50);
-    my_scene->addItem(box);
-    box->addtoscene();
 
-    surface * ground = new surface(player,0,500,1200,20);
-    my_scene->addItem(ground);
-    ground->addtoscene();
+    surface * start = new surface(my_scene,player,0,350,100,150);
 
-    surface * platform = new surface(player,600, 100, 600, 20);
-    my_scene->addItem(platform);
-    platform->addtoscene();
+    surface * floatingbox = new surface(my_scene, player,250,250,50,50);
 
-    surface * surface_box = new surface(player,100, 250, 50, 50);
-    my_scene->addItem(surface_box);
-    surface_box->addtoscene();
+    surface * box = new surface(my_scene, player,350,450,50,50);
 
-    surface * bigbox = new surface(player, 600, 350,600, 150);
-    my_scene->addItem(bigbox);
-    bigbox->addtoscene();
+    surface * ground = new surface(my_scene,player,0,500,1200,20);
+
+    surface * platform = new surface(my_scene,player,600, 100, 600, 20);
+
+    surface * surface_box = new surface(my_scene,player,100, 250, 50, 50);
+
+    surface * bigbox = new surface(my_scene,player, 600, 350,600, 150);
+
 
     //add a view
     QGraphicsView * my_view = new QGraphicsView(my_scene);
@@ -56,7 +61,12 @@ int main(int argc, char *argv[])
     my_view->setFixedSize(1200,600);
     my_scene->setSceneRect(0,0,1200,600);
 
-    player->setPos(100, 400);
+    player->setPos(25, 50);
+
+    QMediaPlayer * music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/hyperspace.mp3"));
+    music->play();
+    music->setVolume(2);
 
     return a.exec();
 }

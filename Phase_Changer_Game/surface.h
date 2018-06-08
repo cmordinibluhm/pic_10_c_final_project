@@ -7,21 +7,23 @@
 
 class surface  :  public QObject, public QGraphicsRectItem {
    Q_OBJECT
+
+    bool osc;
+
+    friend class phase_changer;
+
 public:
 
     phase_changer* player;
 
-    QGraphicsRectItem* body;
+    QGraphicsPixmapItem* body; //unused
+
     QGraphicsRectItem* left;
     QGraphicsRectItem* right;
-
     QGraphicsRectItem* top;
     QGraphicsRectItem* bottom;
 
-    surface(phase_changer* player,int x, int y, int xs, int ys);
-
-    void addtoscene();
-
+    surface(QGraphicsScene * scene, phase_changer* player,int x, int y, int xs, int ys);
 
 public slots:
     void detectcollision();
