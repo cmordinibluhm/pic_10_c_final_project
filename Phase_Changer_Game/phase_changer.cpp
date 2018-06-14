@@ -36,7 +36,12 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 //        } else {
 //            xvelocity = -1;
 //        }
-
+        if (phase == 0 ) {
+            setPixmap(QPixmap(":/images/my_puddle.png").transformed(QTransform().scale(-1,1)));
+        }
+        if (phase == 2 ) {
+            setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50));
+        }
             xvelocity = -1;
 
     } else if (event->key() == Qt::Key_Right) { // else if RIGHT
@@ -54,19 +59,28 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 //        if (scene()->itemAt(x()+50, y()+5, QTransform()) ) {
 //            xvelocity = 0;
 //        } else {
-
-            xvelocity = 1;
+        if (phase == 2 ) {
+            setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50).transformed(QTransform().scale(-1,1)));
+        }
+        if (phase == 0 ) {
+            setPixmap(QPixmap(":/images/my_puddle.png"));
+        }
+        xvelocity = 1;
 
 //        }
 
     } else if (event->key() == Qt::Key_Up) { // else if UP
 
         if ( phase == 0 ) { //if liquid
+            setPixmap(QPixmap(":/images/DarkMatterBall.png"));
+            setPos(x(), y() -40);
             phase = 1; //set to solid
             yvelocity = -1; //accelerate down
             yacceleration = -1;
 
         } else if (phase == 1 ) { //if solid
+            setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50));
+       //     setPixmap(QPixmap(":/images/cloud.png").scaled(60,50));
             phase = 2; //set to gas
             yvelocity = 1; //accelerate up
             yacceleration = 1;
@@ -77,12 +91,15 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
     } else if (event->key() == Qt::Key_Down) { // else if DOWN
 
         if ( phase == 2 ) { //if gas
+            setPixmap(QPixmap(":/images/DarkMatterBall.png"));
             phase = 1; //set to solid
             yvelocity = -1; //accelerate down
             yacceleration = -1;
             //setPos(x(), y()+2);
 
         } else if (phase == 1 ) { //if solid
+            setPixmap(QPixmap(":/images/my_puddle.png"));
+            setPos(x(), y()+40);
             phase = 0; //set liquid
             yvelocity = -1; //keep downward acceleration
             yacceleration = -1;

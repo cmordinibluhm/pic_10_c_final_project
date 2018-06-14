@@ -5,6 +5,10 @@
         <file>stars.jpg</file>
         <file>rock.jpg</file>
         <file>sundragon.png</file>
+        <file>cloud.png</file>
+        <file>bubble.png</file>
+        <file>my_puddle.png</file>
+        <file>bluebubble.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>hyperspace.mp3</file>

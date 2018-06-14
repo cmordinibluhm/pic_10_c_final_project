@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 
     surface * bigbox = new surface(my_scene,player, 600, 350,600, 150);
 
+    surface * tunnel = new surface(my_scene,player,700,120,50,205);
 
     //add a view
     QGraphicsView * my_view = new QGraphicsView(my_scene);

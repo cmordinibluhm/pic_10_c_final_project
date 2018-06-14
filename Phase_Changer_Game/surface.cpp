@@ -54,7 +54,6 @@ void surface::detectcollision() {
             player->playersounds->play();
         }
     } else if (bottom->collidesWithItem(player)){
-
         player->yvelocity = -1;
 
         if (player->playersounds->state() == QMediaPlayer::PlayingState){

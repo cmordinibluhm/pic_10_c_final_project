@@ -2,6 +2,10 @@
 By Casey Mordini-Bluhm
 
 ***
+## YouTube Demo
+how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+***
 
 ## Table of Contents
 
@@ -9,7 +13,10 @@ By Casey Mordini-Bluhm
 - [Objective](#objective)
 - [Instructions](#instructions)
 - [Project Journal](#project-journal)
+    - [Reflection](#reflection)
     - [Resources](#resources)
+    
+***
     
 ## The Game
 ### Objective
@@ -20,6 +27,8 @@ UP- become less dense
 DOWN- become more dense
 LEFT- move left
 RIGHT- move right
+
+***
 
 ## Project Journal
 
@@ -33,99 +42,99 @@ Add enemies
 Add blocks that kill you
 
 ### April 10, 2018
-    Today I looked at some old PIC 10C final projects on YouTube and had the idea to do a phase changing game.
+Today I looked at some old PIC 10C final projects on YouTube and had the idea to do a phase changing game.
 
 ### Commit 1
-    Today I went to Professor Salazar's office hours and asked some questions about the project and about my idea.
+Today I went to Professor Salazar's office hours and asked some questions about the project and about my idea.
     He recommended I keep a journal like this in my readme file. He also said not to worry about choosing a difficult
     project and that it doesn't even have to work at the end. The main thing is the process I go through and how much
     I learn.
 	
-    I have been practicing markdown a little, and so I'm writing this in markdown.
+I have been practicing markdown a little, and so I'm writing this in markdown.
 
-    I also have a Google Doc with brainstorming about the final project.
+I also have a Google Doc with brainstorming about the final project.
 	
-    I just learned to start nano with -m for mouse support. Sweet!
+I just learned to start nano with -m for mouse support. Sweet!
 
 ### Commit 2 and 3
-    I talked to Stephanie last week and she gave me the idea of focusing on the physics. Her idea is basically to just do solid/liquid/gas solvers.
-    Today I started digging into Qt following a YouTube tutorial from a former PIC 10C student.
+I talked to Stephanie last week and she gave me the idea of focusing on the physics. Her idea is basically to just do solid/liquid/gas solvers.
+Today I started digging into Qt following a YouTube tutorial from a former PIC 10C student.
     
-    The "Playground" Qt project is the physics solid collision solver.
-    The "Phase Changer" Qt project is the platformer game.
+The "Playground" Qt project is the physics solid collision solver.
+The "Phase Changer" Qt project is the platformer game.
 
 ### Commit 4
-    Updated .gitignore to ignore build- and .pro.user.
+Updated .gitignore to ignore build- and .pro.user.
 
 ### Commit 5
-    Cleared index with "git rm -r --cached ." and re-added everything.
+Cleared index with "git rm -r --cached ." and re-added everything.
     
 ### Commit 6
-    Added table of contents to readme.md.
-    Added "Resources" section to readme.md.
-    Added "The Game" section to readme.me.
-    Goal for the day: get gravity and contact force with ground
-    This is tough! I've spent several hours researching and trying stuff.
-    After an entire afternoon/evening of scouring forums and documentation, I finally figured out how to enforce collisions!
+Added table of contents to readme.md.
+Added "Resources" section to readme.md.
+Added "The Game" section to readme.me.
+Goal for the day: get gravity and contact force with ground
+This is tough! I've spent several hours researching and trying stuff.
+After an entire afternoon/evening of scouring forums and documentation, I finally figured out how to enforce collisions!
     
 ### Commit 7
-    Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
+Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
 
-    GOAL: Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
+GOAL: Need to decide whether the object should begin falling in the constructor, or if there should be another way that makes it easier to turn falling off
     when the player changes state of matter.
     SOLUTION: The constructor sets up a QTimer and connects its timeout signal the player's slot move(). The player object now has a member variable that tracks
     what state of matter it is in. If this is solid(1) or liquid(0), then the move() function calls the fall() function, and if it's gas(2), then the move() function calls the
     rise() function.
     
-    Maybe I should make a custom collision function that let's me know if it is ontop of, next to, or below whatever it is colliding with.
+Maybe I should make a custom collision function that let's me know if it is ontop of, next to, or below whatever it is colliding with.
     Alternatively I could have different objects for ceilings, floors, and walls (right and left walls) and the player could interact with each differently
     
-    Also would like to allow for multiple key presses at once, so going diagonally. https://stackoverflow.com/questions/3081091/qt-multiple-key-combo-event
+Also would like to allow for multiple key presses at once, so going diagonally. https://stackoverflow.com/questions/3081091/qt-multiple-key-combo-event
     
 ### Commit 8
-    GOAL: Now going to work on being able to seamlessly move left or right when rising or falling, without having to release keys.
+GOAL: Now going to work on being able to seamlessly move left or right when rising or falling, without having to release keys.
     SOLUTION: Changed move right and move left mechanics so that instead of moving with the arrow keys the arrow keys instead change the xvelocity member to -1 or +1.
     Also added a keyReleaseEvent function to player class that detects when the right or left arrow key is released and sets the xvelocity to 0.
     In the constructor for the player, the QTimer now not only connects to the move() function (which in turn calls rise() or fall()) but also to the traverse() function
     which in turn moves left or right based on the xvelocity member.
     This method of storing the velocity with direction of the player seems to be the way that everyone online recommends/assumes it to be done.
     
-    Went to Professor Salazar's office hours to ask a few questions and check in. He told me that the project doesn't have to be fancy or perfectly functional since the
+Went to Professor Salazar's office hours to ask a few questions and check in. He told me that the project doesn't have to be fancy or perfectly functional since the
     main point of the project is the learning experience.
     
-    Regarding collisions, he recommended having some sort of buffer so that when the player jumps ahead by however much, it doesn't accidentally pass the edge of the
+Regarding collisions, he recommended having some sort of buffer so that when the player jumps ahead by however much, it doesn't accidentally pass the edge of the
     object and not register a collision.
     
-    Changes "QTimer timer" to be a member of player class so that its interval can be changed as the type of movement changes.
+Changes "QTimer timer" to be a member of player class so that its interval can be changed as the type of movement changes.
     
 ### Commit 9
-    Merged with master before attempting to make sideways collisions. Each question I look up leads to another and I now have exactly 40 tabs open in Chrome.
+Merged with master before attempting to make sideways collisions. Each question I look up leads to another and I now have exactly 40 tabs open in Chrome.
     Current approach is to use the itemAt(Position) method to see if there is an item at certain positions within the player...
     
-    Okay, so after a fruitless effort to change the ymovement to be based on velocity member I decided to make an executive decision on how I'm going to go about collisions.
+Okay, so after a fruitless effort to change the ymovement to be based on velocity member I decided to make an executive decision on how I'm going to go about collisions.
     I am passing a pointer to the player to every surface object that is made. Player's x and y velocities are now public. The surface class is composed of four sides identified
     as right, left, bottom, and top. The surface class has a public slot "collisiondetection" that is connected to a QTimer with an interval of 1 ms. Whenever a left or right
     surface member collides with the player, the players xvelocity is set to zero. So far this is working quite nicely.
     
-    I made the sizing for the surface objects depend on the parameters passed which are the same as they would be for a QGraphicsRectItem.
+I made the sizing for the surface objects depend on the parameters passed which are the same as they would be for a QGraphicsRectItem.
     
-    One issue that I'd like to work on is that currently I have to add left, right, bottom, and top members individually in main.cpp for each surface object. I try to do it in the
+One issue that I'd like to work on is that currently I have to add left, right, bottom, and top members individually in main.cpp for each surface object. I try to do it in the
     constructor with "scene()->addItem(left)" but I get "use of undeclared identifier scene". I am trying to do it like Abdullah does in his tutorial for the bullet item. I don't
     know what I'm missing...
     SOLUTION: My surface class wasn't inheriting from QGraphicsRectItem (because I thought that would enforce requirements I didn't want). It turns out I was wrong and once I inherited
     from QGraphicsRectItem it worked! Well almost. I had to write a separate method "addtoscene" to add the sides of the surface to the scene after the surface itself is added to the
     scene, since when trying to add them in the constructor the object isn't part of a scene yet so scene() must just return 0.
     
-    QTransform() returns the identity matrix (needed in the call to itemAt() function I'm using in collisions)
+QTransform() returns the identity matrix (needed in the call to itemAt() function I'm using in collisions)
     https://forum.qt.io/topic/43990/solved-itemat-in-5-3-depreciated
     
-    Surfaces are working great and movement is pretty good too!
+Surfaces are working great and movement is pretty good too!
     
 ### Commit 10
-    Still learning more about git. I've been checking out master before committing changes without realizing that was a problem.
+Still learning more about git. I've been checking out master before committing changes without realizing that was a problem.
     https://stackoverflow.com/questions/5531362/why-git-keeps-showing-my-changes-when-i-switch-branches-modified-added-deleted
     
-    GOAL:   Improve movement. (CHECK)
+GOAL:   Improve movement. (CHECK)
             Clean up velocity, phase state, and movement logic. (CHECK)
             Make it so that the player continues to rise/fall when in contact with a vertical surface. (CHECK)
     SOLUTION: Created yacceleration member for player. When it was just yvelocity the velocity would be set to zero and then the player wouldn't be able to get off the ground again
@@ -136,17 +145,17 @@ Add blocks that kill you
     linked to move() which in turn called rise() or traverse().
     Wrote a surface::addtoscene() function to add the left, right, top, and bottom faces of a surface object to a scene.
     
-    The movement and collisions are working great!!
+The movement and collisions are working great!!
     The player no longer collides with standard QGraphicsItems, but only my own custom surface items(this is a good thing). The player accelerates when an obstruction is removed
     and can slide against walls when floating upward or falling downward.
     
     BUGS:   By repeatedly switching between up and down you can embed youself into a surface.
             If you go at a corner of a surface you can get inside of it.
             
-    For the last two days git had refused to push to my remote repo. Every time I tried "git commmit -u origin master" the terminal froze. I tried several fixes recommended
+For the last two days git had refused to push to my remote repo. Every time I tried "git commmit -u origin master" the terminal froze. I tried several fixes recommended
     online and nothing worked, but I tried the same command again after a few days and the push was successful! I don't know if it was a wifi-strength or network thing or what.
     
-    Hard deadline is Monday in the week after finals.
+Hard deadline is Monday in the week after finals.
     Post a video on YouTube.
             
 ### Commit 11
@@ -183,20 +192,63 @@ Remove unwanted resource files from .qrc
 Modifying readme.md markdown formatting
     experimenting with horizontal rule, making all these entries not in code blocks anymore (oops)
 
+### Commit 13
+Uploaded final_project_repo.txt to CCLE
+Markdown formatting changes were successful, applying to the rest of this document.
+
     Current goals:
-        Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar.
+        Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar. (all my if else statements are too long)
         Add scrolling capabilities.
         Add an objective.
-    
 
+Addition: player skin changes to a gas cloud when the phase changes to gas (changed to bubble)
+
+ADDITION: Used photoshop to make my own liquid/puddle skin that is 10 pixels tall. Now when the player presses down they turn into a puddle and can flow under low obstacles. The player turns into a bubble and floats when up
+is pressed. Awesome. I'd like to make more of my own graphics.
+
+Learned how to use QTransform to flip a QPixmap, so that when the player presses the left or right keys the water or bubble changes directions accordingly.
+
+So I got distracted and did not accomplish any of the goals I listed, but I did firgure out some cool stuff about graphics!
+
+I also reviewed the CCLE submission page which had some "Other things to keep in mind." Based on these I added a few sections to this readme file, like "Reflection," "Course Concepts," "What's Next?", and a place for a YouTube
+video demonstration of my project.
+
+***
+
+### Reflection
+
+#### How I came up with the idea and why I settled on it:
+Early in the quarter, before the final project had really been talked about, I had done a google search and found a website with links to a ton of past PIC 10C students' final projects, I saw that a lot of them had used Qt to make
+games and this seemed pretty cool to me. I also found a YouTube series by a former PIC 10C student Abdullah Aghazada. I watched the first parts of his tutorial and it seemed like something cool that I had never done before.
+
+At first I was a little discouraged and doubted my ability to come up with an original game concept. Before too long, though, it just kind of came to me while I was thinking about physics. It was pretty much my first idea and I was
+    very excited that I had come up with it.
     
+### Course Concepts
+Generic algorithms don't really apply here since Qt has so much of its own stuff and since I am using the QTimer in all the places that I normally would have used a for loop.
+    
+#### What's Next?
+I definitely am not done with this project. There's a lot to do, and it will continue to evolve in ways I can't predict right now, but I definitely want to do a few things including:
+    - making my own resources for graphics and sound. I already downloaded GarageBand and plan to make my own background music and sound effects
+    - enemies
+    - multiple levels
+    - random generation of obstacles
+    
+***
+***
+
 ### Resources
+
+The resources here represent just a fraction of the places that I visited and got some information from. Literally hundreds of webages have contributed to my still limited knowledge of Qt and game design.
 
 YouTube Qt Game Tutorials by Abdullah Aghazada
 https://www.youtube.com/watch?v=9lqhMLFHj3A&index=0&list=PLMgDVIa0Pg8WrI9WmZR09xAbfXyfkqKWy
 
 Markdown Help
 http://commonmark.org/help/tutorial/index.html
+
+Markdown Cheatsheet (code blocks, embedding a youtube video, line breaks)
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 Signals and Slots Explanation
 https://doc.qt.io/archives/qt-4.8/signalsandslots.html
@@ -209,5 +261,22 @@ https://stackoverflow.com/questions/16906161/git-push-hangs-when-pushing-to-gith
 
 MP3 vs WAV
 https://www.gamedev.net/forums/topic/170689-mp3-vs-wav-cpu-usage/
+
+Free PNG's
+https://pngtree.com/
+
+
+#### Classes
+
+QPixmap
+https://doc.qt.io/qt-5/qpixmap.html
+
+QTransform
+https://doc.qt.io/qt-5/qtransform.html
+
+QGraphicsItem (and inherited QGraphicsRectItem QGraphicsEllipseItem)
+
+QObject
+
 
 
