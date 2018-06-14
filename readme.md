@@ -1,6 +1,8 @@
 # Phase Changer
 By Casey Mordini-Bluhm
 
+***
+
 ## Table of Contents
 
 - [The Game](#the-game)
@@ -148,32 +150,45 @@ Add blocks that kill you
     Post a video on YouTube.
             
 ### Commit 11
-    Got rid of the surface::addtoscene() function that I made and instead added a pointer to the scene in the constructor for surface so that all the adding can be done
+Got rid of the surface::addtoscene() function that I made and instead added a pointer to the scene in the constructor for surface so that all the adding can be done
     automatically in the constructor.
     
-    FIGURED SOMETHING OUT: I was having trouble with collision detection before because when I used itemAt(x,y,transform) I was checking a position WITHIN the player itself, so it
+FIGURED SOMETHING OUT: I was having trouble with collision detection before because when I used itemAt(x,y,transform) I was checking a position WITHIN the player itself, so it
     always returned true! I set the position to be (x -1, y + x, transform) where x varies across a little less than the height of the player and it works great! This also does a lot
     towards fixing the bug where the player's bottom can go through surfaces!
     
-    Made the player into a rectangle instead of a circle to simplify collisions.
+Made the player into a rectangle instead of a circle to simplify collisions.
     
-    I got burnt out on collisions so I decided to add graphics. I changed my player object so that it inherits from QGraphicsPixmapItem instead of QGraphicsRectItem.
+I got burnt out on collisions so I decided to add graphics. I changed my player object so that it inherits from QGraphicsPixmapItem instead of QGraphicsRectItem.
     I then used photoshop to remove the background of an image that I found online and resize it to the right pixel count and then added that image to the resource file
     folder that I added to the project.
     
-    Added the classic windows background as the background for my game. Changed background to space.
+Added the classic windows background as the background for my game. Changed background to space.
     Added a wooden plank texture to the surfaces but it looked terrible. Changed it to a rocky texture.
     
-    Right now all my textures are just stretched out images from google. It would be nice to make my own repeatable textures and figure out how to tile-fill my different sized
+Right now all my textures are just stretched out images from google. It would be nice to make my own repeatable textures and figure out how to tile-fill my different sized
     surfaces, but I should probably focus on other things.
     
-    Got an mp3 of some space-rock to add to play at the start of the game    http://freemusicarchive.org/genre/Space-Rock/#
+Got an mp3 of some space-rock to add to play at the start of the game    http://freemusicarchive.org/genre/Space-Rock/#
     This required learning about the QMediaPlayer class, and also required that I add the "multimedia" module to the project file, my first time editing the project file.
     
-    Apparently .wav sound files are raw data, uncompressed and should be used in game design for interface and game sounds, while .mp3 files are compressed, take more
+Apparently .wav sound files are raw data, uncompressed and should be used in game design for interface and game sounds, while .mp3 files are compressed, take more
     processing power, and are best used for music and ambient sounds    https://www.gamedev.net/forums/topic/170689-mp3-vs-wav-cpu-usage/
     
-    Got an mp3 (it wasn't in wav format) for when the player comes in contact with a surface. I think this is enough sound for now.ß
+Got an mp3 (it wasn't in wav format) for when the player comes in contact with a surface. I think this is enough sound for now.
+    
+### Commit 12
+Add final_project_repo.txt for upload to CCLE.
+Remove unwanted resource files from .qrc
+Modifying readme.md markdown formatting
+    experimenting with horizontal rule, making all these entries not in code blocks anymore (oops)
+
+    Current goals:
+        Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar.
+        Add scrolling capabilities.
+        Add an objective.
+    
+
     
 ### Resources
 
@@ -188,6 +203,9 @@ https://doc.qt.io/archives/qt-4.8/signalsandslots.html
 
 Collision Detection Thread
 https://forum.qt.io/topic/21047/collision-detection
+
+Git Push Troubleshooting
+https://stackoverflow.com/questions/16906161/git-push-hangs-when-pushing-to-github
 
 MP3 vs WAV
 https://www.gamedev.net/forums/topic/170689-mp3-vs-wav-cpu-usage/

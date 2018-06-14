@@ -1,14 +1,9 @@
 <RCC>
     <qresource prefix="/images">
-        <file>grassresource</file>
-        <file>windowsbackground.jpg</file>
-        <file>balloflight.png</file>
         <file>DarkMatterBall.png</file>
-        <file>verticalplanks.jpeg</file>
         <file>blackhole.jpg</file>
         <file>stars.jpg</file>
         <file>rock.jpg</file>
-        <file>sun.png</file>
         <file>sundragon.png</file>
     </qresource>
     <qresource prefix="/sounds">
