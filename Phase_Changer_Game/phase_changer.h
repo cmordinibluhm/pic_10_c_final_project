@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
+#include <QGraphicsView>
 
 class phase_changer : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
@@ -17,7 +18,7 @@ private:
     QTimer * xtimer; //timer for the player's horizontal movement
     QTimer * ytimer; //timer for the player's vertical movement
 
-
+    QGraphicsView * my_view;
 
 public:
 
@@ -27,19 +28,17 @@ public:
     int yvelocity; //the vertical velocity
     int yacceleration; //vertical acceleration of the player
 
-    phase_changer(); //constructor
+    phase_changer(QGraphicsView * _view); //constructor
 
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
-
 
 public slots:
 
     void traverse(); //horizontal movement
     void fall(); //solid/liquid vertical movement
+    void update_view();
 
 };
-
-
 
 #endif // PHASE_CHANGER_H

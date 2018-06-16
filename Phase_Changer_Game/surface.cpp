@@ -10,7 +10,6 @@ surface::surface(QGraphicsScene * scene, phase_changer* player_, int x, int y, i
       top = new QGraphicsRectItem(x + 5, y, xs - 10, 5);
 
       body = new QGraphicsPixmapItem();
-      //body->setPixmap(QPixmap(":/images/verticalplanks.jpeg").scaled(xs,ys));
       body->setPixmap(QPixmap(":/images/rock.jpg").scaled(xs,ys));
       body->setPos(x,y);
 
@@ -24,6 +23,8 @@ surface::surface(QGraphicsScene * scene, phase_changer* player_, int x, int y, i
       QTimer * timer = new QTimer(this);
       timer->start(1);
       connect(timer,SIGNAL(timeout()),this,SLOT(detectcollision()));
+      connect(timer,SIGNAL(timeout()),this,SLOT(detectcollision()));
+
 }
 
 void surface::detectcollision() {

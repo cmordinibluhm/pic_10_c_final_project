@@ -1,4 +1,4 @@
-# Phase Changer
+g# Phase Changer
 By Casey Mordini-Bluhm
 
 ***
@@ -10,8 +10,8 @@ how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markd
 ## Table of Contents
 
 - [The Game](#the-game)
-- [Objective](#objective)
-- [Instructions](#instructions)
+    - [Objective](#objective)
+    - [Instructions](#instructions)
 - [Project Journal](#project-journal)
     - [Reflection](#reflection)
     - [Resources](#resources)
@@ -23,9 +23,13 @@ how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markd
 Manipulate your state in order to navigate the obstacles between you and the checkpoint
 
 ### Instructions
+
 UP- become less dense
+
 DOWN- become more dense
+
 LEFT- move left
+
 RIGHT- move right
 
 ***
@@ -34,12 +38,14 @@ RIGHT- move right
 
 ### Ideas
 
-Add graphics
-        Escape from laboratory
-Add picture of controls
-Add controls/instruction screen
-Add enemies
-Add blocks that kill you
+- Add graphics
+    - Escape from laboratory?
+    - space
+- Add picture of controls
+- Add controls/instruction screen
+- Add enemies
+- Add hazards of some sort
+- add water
 
 ### April 10, 2018
 Today I looked at some old PIC 10C final projects on YouTube and had the idea to do a phase changing game.
@@ -149,8 +155,8 @@ The movement and collisions are working great!!
     The player no longer collides with standard QGraphicsItems, but only my own custom surface items(this is a good thing). The player accelerates when an obstruction is removed
     and can slide against walls when floating upward or falling downward.
     
-    BUGS:   By repeatedly switching between up and down you can embed youself into a surface.
-            If you go at a corner of a surface you can get inside of it.
+    BUGS:   By repeatedly switching between up and down you can embed youself into a surface. (FIXED)
+            If you go at a corner of a surface you can get inside of it. (MOSTLY FIXED)
             
 For the last two days git had refused to push to my remote repo. Every time I tried "git commmit -u origin master" the terminal froze. I tried several fixes recommended
     online and nothing worked, but I tried the same command again after a few days and the push was successful! I don't know if it was a wifi-strength or network thing or what.
@@ -188,17 +194,18 @@ Got an mp3 (it wasn't in wav format) for when the player comes in contact with a
     
 ### Commit 12
 Add final_project_repo.txt for upload to CCLE.
+
 Remove unwanted resource files from .qrc
-Modifying readme.md markdown formatting
-    experimenting with horizontal rule, making all these entries not in code blocks anymore (oops)
+
+Modifying readme.md markdown formatting: experimenting with horizontal rule, taking all these entries out of code blocks (oops)
 
 ### Commit 13
 Uploaded final_project_repo.txt to CCLE
 Markdown formatting changes were successful, applying to the rest of this document.
 
     Current goals:
-        Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar. (all my if else statements are too long)
-        Add scrolling capabilities.
+        Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar.
+        Add scrolling capabilities. (CHECK)
         Add an objective.
 
 Addition: player skin changes to a gas cloud when the phase changes to gas (changed to bubble)
@@ -212,6 +219,24 @@ So I got distracted and did not accomplish any of the goals I listed, but I did 
 
 I also reviewed the CCLE submission page which had some "Other things to keep in mind." Based on these I added a few sections to this readme file, like "Reflection," "Course Concepts," "What's Next?", and a place for a YouTube
 video demonstration of my project.
+
+### Commit 14
+Pushed to github and reviewed markdown formatting again, made a few more changes with indenting and newlines.
+
+Cleaned up main.cpp by organizing the main routine into sections such as "set the scene", "set up the view", "create the player". The "aesthetics" section will have all the declatations of graphics that the player does not collide with.
+The "surfaces" section will have all the surfaces the player collides with. I am also changing the names of the surfaces to be more descriptive.
+
+set my scene's stickyfocus tag to true so that you don't ever have to click on the player to resume using the arrow keys to control it.
+
+ADDITION: After a lot of troubleshooting, I figured out how to make my QGraphicsView follow the player! What I ended up doing is changing my player constructor to take a pointer to the view. Then, I added a public slot to the
+phase_changer class called update_view() that calls centerOn(player). I then connected this SLOT to a QTimer in the phase_changer constructor! Before this I had a few other ideas like adding a QScrollBar and connecting the player's
+position to the scrollbar's position. Another idea was to use a moveEvent in the phase_changer class to set the view/scrollbar position. Perhaps these could have worked as well but this implementation I figured out works great!
+
+I added a few new obstacles.
+
+Things to work on:
+- the player disappears when you go out of the page
+- the game is boring, there is no objective or danger (I need hazards or enemies or jumping instead of floating)
 
 ***
 
@@ -267,6 +292,12 @@ https://pngtree.com/
 
 
 #### Classes
+
+QGraphicsScene
+https://doc.qt.io/qt-5/qgraphicsscene.html
+
+QGraphicsView
+https://doc.qt.io/qt-5/qgraphicsview.html
 
 QPixmap
 https://doc.qt.io/qt-5/qpixmap.html

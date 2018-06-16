@@ -3,7 +3,7 @@
 #include <QKeyEvent>
 #include <QGraphicsScene>
 
-phase_changer::phase_changer() : phase(1), xvelocity(0), yvelocity(-1), yacceleration(-1) { //set phase to 1 (solid), x,y velocities to 0
+phase_changer::phase_changer(QGraphicsView * _view) : my_view(_view), phase(1), xvelocity(0), yvelocity(-1), yacceleration(-1) { //set phase to 1 (solid), x,y velocities to 0
 
     //setRect(0,0,40,40); //set player's size
 
@@ -14,6 +14,7 @@ phase_changer::phase_changer() : phase(1), xvelocity(0), yvelocity(-1), yacceler
 
     connect(ytimer, SIGNAL(timeout()), this, SLOT(fall())); //connect ytimer to vertical move() function
     connect(xtimer, SIGNAL(timeout()), this, SLOT(traverse())); //connect xtimer to lateral traverse() function
+    connect(xtimer, SIGNAL(timeout()), this, SLOT(update_view())); //connect xtimer to lateral traverse() function
 
     ytimer->start(30); //set ytimer interval
     xtimer->start(1); //set xtimer interval
@@ -80,7 +81,6 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 
         } else if (phase == 1 ) { //if solid
             setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50));
-       //     setPixmap(QPixmap(":/images/cloud.png").scaled(60,50));
             phase = 2; //set to gas
             yvelocity = 1; //accelerate up
             yacceleration = 1;
@@ -143,5 +143,10 @@ void phase_changer::fall()
             yvelocity = 1;
         }
     }
+}
+
+void phase_changer::update_view()
+{
+    my_view->centerOn(this);
 }
 
