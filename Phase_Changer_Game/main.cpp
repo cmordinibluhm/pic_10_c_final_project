@@ -44,43 +44,86 @@ int main(int argc, char *argv[])
 
     player->setPos(25, 0);
 
-    //------------------------------------- aesthetics ----------------------------------------//
-
-//    QGraphicsPixmapItem * sundragon = new QGraphicsPixmapItem();
-//    sundragon->setPixmap(QPixmap(":/images/sundragon.png").scaled(200,200));
-//    sundragon->setPos(2000,50);
-//    my_scene->addItem(sundragon);
-
-//    (sundragon->collidesWithItem(player) ? ("You win!\n") : printf("Make it to the dragon\n"));
+    //------------------------------------- objective -----------------------------------------//
 
     objective * my_objective = new objective(my_scene, player);
     my_objective->setPos(2000,50);
 
+    //------------------------------------- aesthetics ----------------------------------------//
+
     QGraphicsPixmapItem * cloud = new QGraphicsPixmapItem();
     cloud->setPixmap(QPixmap(":/images/cloud.png").scaled(400,200));
-    cloud->setPos(50,25);
+    cloud->setPos(200,0);
     my_scene->addItem(cloud);
+
+    QGraphicsPixmapItem * bolt = new QGraphicsPixmapItem();
+    bolt->setPixmap(QPixmap(":/images/my_lightning.png"));
+    bolt->setPos(450,165);
+    my_scene->addItem(bolt);
+
+    QGraphicsPixmapItem * rain = new QGraphicsPixmapItem();
+    rain->setPixmap(QPixmap(":/images/light_rain.png"));
+    rain->setPos(1800,0);
+    my_scene->addItem(rain);
+
+    QGraphicsPixmapItem * lava = new QGraphicsPixmapItem();
+    lava->setPixmap(QPixmap(":/images/lava.png").scaled(300, 40));
+    lava->setPos(1700,310);
+    my_scene->addItem(lava);
 
     //-------------------------------------- surfaces -----------------------------------------//
 
     surface * start = new surface(my_scene,player,0,350,100,150);
-    surface * ground1 = new surface(my_scene,player,0,500,2400,20);
-    surface * floatingbox1 = new surface(my_scene,player,150, 250, 50, 50);
-    surface * floatingbox2 = new surface(my_scene, player,250,250,50,50);
-    surface * groundbox1 = new surface(my_scene, player,350,450,50,50);
-    surface * highplatform = new surface(my_scene,player,600, 100, 600, 20);
-    surface * mesa1 = new surface(my_scene,player, 600, 350,600, 150);
-    surface * mesa2 = new surface(my_scene,player, 1600, 350,600, 150);
-    surface * pillar1 = new surface(my_scene,player,700,120,50,205);
-    surface * wall1 = new surface(my_scene,player,2000,0,20,330);
 
-    spikes * obstacle1 = new spikes(my_scene,player,100,500,250,1);
-    spikes * obstacle2 = new spikes(my_scene,player,600,350,150,3);
-    spikes * obstacle3 = new spikes(my_scene,player,250,300,50,2);
-    spikes * obstacle4 = new spikes(my_scene,player,300,250,50,4);
+    surface * ground1 = new surface(my_scene,player,0,500,600,120);
+    surface * ground2 = new surface(my_scene,player,600,590,1800,30);
 
+    surface * floatingcolumn = new surface(my_scene,player,150, 0, 50, 300);
 
-    //------------------------------------ set the music --------------------------------------//
+    surface * floatingbox = new surface(my_scene, player,250,250,50,50);
+    surface * groundbox1 = new surface(my_scene, player,350,400,50,100);
+
+    surface * volcano_baseleft = new surface(my_scene,player, 570, 400,285, 100);
+    surface * volcano_botleft = new surface(my_scene,player, 600, 350,285, 50);
+    surface * volcano_midleft = new surface(my_scene,player, 625, 200,260, 150);
+    surface * volcano_topleft = new surface(my_scene,player, 650, 100,235, 100);
+
+    surface * volcano_baseright = new surface(my_scene,player, 1005, 400,355, 100);
+    surface * volcano_botright = new surface(my_scene,player, 975, 350,325, 50);
+    surface * volcano_midright = new surface(my_scene,player, 975, 200,300, 150);
+    surface * volcano_topright = new surface(my_scene,player, 975, 100,275, 100);
+
+    surface * volcano_upper = new surface(my_scene,player, 1075, 0,925, 100);
+
+    surface * wall = new surface(my_scene, player, 1500,160,20,500);
+
+    surface * mesa2 = new surface(my_scene,player, 1600, 350,600, 130);
+    surface * wall1 = new surface(my_scene,player,2000,0,20,350);
+
+    //--------------------------------------- hazards -----------------------------------------//
+
+    spikes * floatingcolumnbottom = new spikes(my_scene, player, 150,300,50,2);
+
+    spikes * obstacle1 = new spikes(my_scene,player,100,500,250,1); //bottom
+    spikes * obstacle2 = new spikes(my_scene,player,600,350,50,3); //left
+    spikes * obstacle3 = new spikes(my_scene,player,250,300,50,2); //top
+    spikes * obstacle4 = new spikes(my_scene,player,300,250,50,4); //right
+
+    spikes * volcano_left = new spikes(my_scene,player,880,105,290,4);
+    spikes * volcano_right= new spikes(my_scene,player,980,105,290,3);
+    spikes * volcano_lava = new spikes(my_scene,player,600,600,350,1);
+
+    spikes * mine_field1 = new spikes(my_scene,player,1400,470,40,2);
+    spikes * mine_field2 = new spikes(my_scene,player,1450,370,40,2);
+    spikes * mine_fieldtop1 = new spikes(my_scene,player,1360,250,40,2);
+    spikes * mine_fieldtop = new spikes(my_scene,player,1400,250,40,2);
+
+    spikes * wall_top = new spikes(my_scene,player,1500,170,20,1);
+
+    spikes * tunnel_bottom = new spikes(my_scene,player,1600,600,700,1);
+    spikes * tunnel_top = new spikes(my_scene,player,1600,470,600,2);
+
+    //---------------------------------------- music ------------------------------------------//
 
     QMediaPlayer * music = new QMediaPlayer();
     music->setMedia(QUrl("qrc:/sounds/hyperspace.mp3"));

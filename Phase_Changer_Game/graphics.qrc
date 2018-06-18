@@ -8,12 +8,15 @@
         <file>cloud.png</file>
         <file>my_puddle.png</file>
         <file>bluebubble.png</file>
-        <file>ice.png</file>
         <file>my_ice.png</file>
         <file>my_ice_2.png</file>
         <file>my_ice_3.png</file>
         <file>my_ice_4.png</file>
         <file>jeremiahs_poodle.png</file>
+        <file>my_lightning.png</file>
+        <file>bluebubble_still.png</file>
+        <file>light_rain.png</file>
+        <file>lava.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>hyperspace.mp3</file>

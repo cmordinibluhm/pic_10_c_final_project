@@ -18,8 +18,8 @@ spikes::spikes(QGraphicsScene * _scene, phase_changer * _player, int x, int y, i
                                QPointF(x+20,y+(size/2)) << QPointF(x+10,y) ));
     }
 
-    setPen( QPen(Qt::darkGreen) );
-    setBrush( Qt::red );
+    setPen( QPen(Qt::darkRed) );
+    setBrush( Qt::red);
 
     scene->addItem(this);
 

@@ -1,8 +1,8 @@
-g# Phase Changer
+# Phase Changer
 By Casey Mordini-Bluhm
 
 ***
-## YouTube Demo
+## YouTube Demo 
 how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 ***
@@ -206,7 +206,7 @@ Markdown formatting changes were successful, applying to the rest of this docume
     Current goals:
         Try to incorporate a ternary operator somewhere! Those things are some cool syntactic sugar.
         Add scrolling capabilities. (CHECK)
-        Add an objective.
+        Add an objective. (CHECK)
 
 Addition: player skin changes to a gas cloud when the phase changes to gas (changed to bubble)
 
@@ -234,9 +234,10 @@ position to the scrollbar's position. Another idea was to use a moveEvent in the
 
 I added a few new obstacles.
 
-Things to work on:
-- the player disappears when you go out of the page
-- the game is boring, there is no objective or danger (I need hazards or enemies or jumping instead of floating)
+    Things to work on
+        The player disappears when you go out of the page (eh, not important)
+        The game is boring, there is no objective or danger (I need hazards or enemies or jumping instead of floating)
+        (CHECK, added spikes)
 
 ### Commit 15
 
@@ -247,7 +248,10 @@ I made a few different versions of my_ice.png and settled on one. My friend from
 it because it looks good and for sentimental reasons. (Puddle artwork credit to Jeremiah Zagala).
 
 Anyways, hopefully I will be able to present the different iterations of my ice artwork here once I push to github and have their urls.
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice.png)
+![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice_2.png)
+![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice_3.png)
+![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice_4.png)
 
 
 I added an "objective" class inheriting from QPixmapItem. When the player reaches it, the objective growing in size and the text "You win!"  appears on the screen beneath the player.
@@ -258,9 +262,25 @@ more flexibility than the other QGraphicsItems.
 SUCCESS: spikes class sends player back to the starting point successfully. The spikes only come to one point in the middle of the object, but it works. It's a little too touchy right now, in that the player gets sent back when it
 seems like it is far enough away that it shouldnt be. I might have to figure out how to add a hitbox to the phase_changer class.
 
+### Commit 16
+
+Added lightning bolt I made in photoshop.
+
+In order to make the game more challenging, I decided to make a limit to how high the player can rise.
+I added an int distance_risen member to phase_changer so that the phase changer can only float a total of 300 pixels upwards each time it launches from the ground.
+
+Added another bubble skin so that when the player is in the gas state and isn't moving left or right the bubble has no trailing bubbles.
+
+Added a lot more surfaces and spikes, and a few more graphics purely for decoration, and the game is looking like a real game. It's actually a little challenging!
+
 ***
 
 ### Reflection
+This project was a really great learning experience and so enjoyable that I put off other schoolwork, stayed up very late, and even worked on it during other classes when I probably should have been paying attention. My friend has
+been wokring on his own videogames with gamemake for years and I never got into it, but I have found that I really enjoy it.
+
+I just started programming in the fall of this year, and I am happy with my progress. I never could motivate myself to learn programming before I enrolled in a class for it. This project is really the first time that I have been self motivated
+and actively researched and gained new programming knowledge by myself.
 
 #### How I came up with the idea and why I settled on it:
 Early in the quarter, before the final project had really been talked about, I had done a google search and found a website with links to a ton of past PIC 10C students' final projects, I saw that a lot of them had used Qt to make
@@ -271,13 +291,26 @@ At first I was a little discouraged and doubted my ability to come up with an or
     
 ### Course Concepts
 Generic algorithms don't really apply here since Qt has so much of its own stuff and since I am using the QTimer in all the places that I normally would have used a for loop.
-    
+Since I'm not using any loops, iterators aren't very useful either.
+
+Memory management wasn't something that I had to deal with. I'm pretty sure Qt takes care of most of that, and since all my classes inherit from established Qt objects, I believe they are RAII ready.
+
+One thing that Qt draws heavily on is inheritance and polymorphism. Classes often inherit from QObject and a QGraphicsItem (which has subclasses that inherit from it like QGraphicsRectItem, QGraphicsEllipseItem, QGraphicsTextItem,
+QGraphicsPolygonItem, QGraphicsPixmapItem). I used the concept of friend classes, and since my project is small and I am the only one modifying it, I was a little bit lax about encapsulation. I made a lot of members public so that they could be easily modified by other classes. When I did this however, I was aware that I was ignoring the principle of encapsulation and that I maybe should have been coding my own setters. I got practice with syntax declaration and keywords,
+base classes and derived classes, multiple inheritance, Qt's built in virtual functions and abstract classes.
+
+STL I didn't make use of STL containers but I did make use of special Qt containers. Instead of std::vector<T> I used QVector<QPointF> to store a collection of vertices for a QGraphicsPolygonItem. Each QPointF stores an x and a y value.
+
+Of oourse, I used git a lot and learned a lot about it, mostly from when things went wrong and I had to look through stackoverflow to figure out how to fix what I'd messed up. I'm now comfortable with enough commands and
+conventions that it isn't a burden to use git. In fact, it is enjoyable and helpful. I also learned some markdown and got to experiment a bit with that.
+
 #### What's Next?
 I definitely am not done with this project. There's a lot to do, and it will continue to evolve in ways I can't predict right now, but I definitely want to do a few things including:
-    - making my own resources for graphics and sound. I already downloaded GarageBand and plan to make my own background music and sound effects
+    - making more of my own resources for graphics and sound. I already downloaded GarageBand and plan to make my own background music and sound effects
     - enemies
     - multiple levels
     - random generation of obstacles
+    - creating a hitbox for the player so that the spikes are a little more forgiving
     
 ***
 ***

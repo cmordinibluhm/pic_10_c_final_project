@@ -29,6 +29,8 @@ public:
     int xacceleration; //the horizontal acceleration of the player
     int yacceleration; //vertical acceleration of the player
 
+    int distance_risen;
+
     phase_changer(QGraphicsView * _view); //constructor
 
     void keyPressEvent(QKeyEvent * event);

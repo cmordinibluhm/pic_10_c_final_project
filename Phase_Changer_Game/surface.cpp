@@ -54,6 +54,7 @@ void surface::detectcollision() {
         } else {
             player->playersounds->play();
         }
+        player->distance_risen = 0;
     } else if (bottom->collidesWithItem(player)){
         player->yvelocity = -1;
 
