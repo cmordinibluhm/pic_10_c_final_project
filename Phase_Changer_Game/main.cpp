@@ -1,7 +1,9 @@
 #include <QApplication>
 #include <QGraphicsScene>
 #include "phase_changer.h"
+#include "objective.h"
 #include "surface.h"
+#include "spikes.h"
 #include <QGraphicsView>
 #include <QTimer>
 #include <QDebug>
@@ -40,14 +42,19 @@ int main(int argc, char *argv[])
     my_scene->setStickyFocus(true);
     player->setFocus();
 
-    player->setPos(25, 50);
+    player->setPos(25, 0);
 
     //------------------------------------- aesthetics ----------------------------------------//
 
-    QGraphicsPixmapItem * sundragon = new QGraphicsPixmapItem();
-    sundragon->setPixmap(QPixmap(":/images/sundragon.png").scaled(200,200));
-    sundragon->setPos(2000,50);
-    my_scene->addItem(sundragon);
+//    QGraphicsPixmapItem * sundragon = new QGraphicsPixmapItem();
+//    sundragon->setPixmap(QPixmap(":/images/sundragon.png").scaled(200,200));
+//    sundragon->setPos(2000,50);
+//    my_scene->addItem(sundragon);
+
+//    (sundragon->collidesWithItem(player) ? ("You win!\n") : printf("Make it to the dragon\n"));
+
+    objective * my_objective = new objective(my_scene, player);
+    my_objective->setPos(2000,50);
 
     QGraphicsPixmapItem * cloud = new QGraphicsPixmapItem();
     cloud->setPixmap(QPixmap(":/images/cloud.png").scaled(400,200));
@@ -57,24 +64,21 @@ int main(int argc, char *argv[])
     //-------------------------------------- surfaces -----------------------------------------//
 
     surface * start = new surface(my_scene,player,0,350,100,150);
-
     surface * ground1 = new surface(my_scene,player,0,500,2400,20);
-
     surface * floatingbox1 = new surface(my_scene,player,150, 250, 50, 50);
-
     surface * floatingbox2 = new surface(my_scene, player,250,250,50,50);
-
     surface * groundbox1 = new surface(my_scene, player,350,450,50,50);
-
     surface * highplatform = new surface(my_scene,player,600, 100, 600, 20);
-
     surface * mesa1 = new surface(my_scene,player, 600, 350,600, 150);
-
     surface * mesa2 = new surface(my_scene,player, 1600, 350,600, 150);
-
     surface * pillar1 = new surface(my_scene,player,700,120,50,205);
+    surface * wall1 = new surface(my_scene,player,2000,0,20,330);
 
-    surface * wall1 = new surface(my_scene,player,2000,0,20,620);
+    spikes * obstacle1 = new spikes(my_scene,player,100,500,250,1);
+    spikes * obstacle2 = new spikes(my_scene,player,600,350,150,3);
+    spikes * obstacle3 = new spikes(my_scene,player,250,300,50,2);
+    spikes * obstacle4 = new spikes(my_scene,player,300,250,50,4);
+
 
     //------------------------------------ set the music --------------------------------------//
 

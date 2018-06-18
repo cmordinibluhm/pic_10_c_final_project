@@ -16,7 +16,7 @@ public:
 
     phase_changer* player;
 
-    QGraphicsPixmapItem* body; //unused
+    QGraphicsPixmapItem* body;
 
     QGraphicsRectItem* left;
     QGraphicsRectItem* right;

@@ -26,6 +26,7 @@ public:
 
     int xvelocity; //the horizontal velocity
     int yvelocity; //the vertical velocity
+    int xacceleration; //the horizontal acceleration of the player
     int yacceleration; //vertical acceleration of the player
 
     phase_changer(QGraphicsView * _view); //constructor
@@ -36,7 +37,7 @@ public:
 public slots:
 
     void traverse(); //horizontal movement
-    void fall(); //solid/liquid vertical movement
+    void vertical_movement(); //solid/liquid vertical movement
     void update_view();
 
 };

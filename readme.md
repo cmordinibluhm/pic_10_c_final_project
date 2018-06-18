@@ -238,6 +238,26 @@ Things to work on:
 - the player disappears when you go out of the page
 - the game is boring, there is no objective or danger (I need hazards or enemies or jumping instead of floating)
 
+### Commit 15
+
+So the application output has been showing "libpng warning: iCCP: known incorrect sRGB profile".  It turns out this can be safely ignored.
+
+After searching for quite a while for a new png for the solid state of my phase_changer, ( I decided to make it ice instead of a dark matter ball) I decided to create my own in photoshop.
+I made a few different versions of my_ice.png and settled on one. My friend from high school who has been into making games for quite a while came to visit and made his own version of a puddle texture, and I decided to keep
+it because it looks good and for sentimental reasons. (Puddle artwork credit to Jeremiah Zagala).
+
+Anyways, hopefully I will be able to present the different iterations of my ice artwork here once I push to github and have their urls.
+![alt text](http://url/to/img.png)
+
+
+I added an "objective" class inheriting from QPixmapItem. When the player reaches it, the objective growing in size and the text "You win!"  appears on the screen beneath the player.
+
+Now I am going to add a spikes class which will cause the player to return to the starting point if touched. I am going to use the QGraphicsPolygonItem class to do this, since I haven't used this class yet and it seems like it offers
+more flexibility than the other QGraphicsItems.
+
+SUCCESS: spikes class sends player back to the starting point successfully. The spikes only come to one point in the middle of the object, but it works. It's a little too touchy right now, in that the player gets sent back when it
+seems like it is far enough away that it shouldnt be. I might have to figure out how to add a hitbox to the phase_changer class.
+
 ***
 
 ### Reflection

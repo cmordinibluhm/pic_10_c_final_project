@@ -7,12 +7,12 @@ phase_changer::phase_changer(QGraphicsView * _view) : my_view(_view), phase(1), 
 
     //setRect(0,0,40,40); //set player's size
 
-    setPixmap(QPixmap(":/images/DarkMatterBall.png"));
+    setPixmap(QPixmap(":/images/my_ice_3.png"));
 
     ytimer = new QTimer(this); //timer for lateral movement
     xtimer = new QTimer(this); //timer for vertical movement
 
-    connect(ytimer, SIGNAL(timeout()), this, SLOT(fall())); //connect ytimer to vertical move() function
+    connect(ytimer, SIGNAL(timeout()), this, SLOT(vertical_movement())); //connect ytimer to vertical move() function
     connect(xtimer, SIGNAL(timeout()), this, SLOT(traverse())); //connect xtimer to lateral traverse() function
     connect(xtimer, SIGNAL(timeout()), this, SLOT(update_view())); //connect xtimer to lateral traverse() function
 
@@ -38,7 +38,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 //            xvelocity = -1;
 //        }
         if (phase == 0 ) {
-            setPixmap(QPixmap(":/images/my_puddle.png").transformed(QTransform().scale(-1,1)));
+            setPixmap(QPixmap(":/images/jeremiahs_poodle.png").transformed(QTransform().scale(-1,1)));
         }
         if (phase == 2 ) {
             setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50));
@@ -64,7 +64,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
             setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50).transformed(QTransform().scale(-1,1)));
         }
         if (phase == 0 ) {
-            setPixmap(QPixmap(":/images/my_puddle.png"));
+            setPixmap(QPixmap(":/images/jeremiahs_poodle.png"));
         }
         xvelocity = 1;
 
@@ -73,7 +73,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
     } else if (event->key() == Qt::Key_Up) { // else if UP
 
         if ( phase == 0 ) { //if liquid
-            setPixmap(QPixmap(":/images/DarkMatterBall.png"));
+            setPixmap(QPixmap(":/images/my_ice_3.png"));
             setPos(x(), y() -40);
             phase = 1; //set to solid
             yvelocity = -1; //accelerate down
@@ -91,14 +91,14 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
     } else if (event->key() == Qt::Key_Down) { // else if DOWN
 
         if ( phase == 2 ) { //if gas
-            setPixmap(QPixmap(":/images/DarkMatterBall.png"));
+            setPixmap(QPixmap(":/images/my_ice_3.png"));
             phase = 1; //set to solid
             yvelocity = -1; //accelerate down
             yacceleration = -1;
             //setPos(x(), y()+2);
 
         } else if (phase == 1 ) { //if solid
-            setPixmap(QPixmap(":/images/my_puddle.png"));
+            setPixmap(QPixmap(":/images/jeremiahs_poodle.png"));
             setPos(x(), y()+40);
             phase = 0; //set liquid
             yvelocity = -1; //keep downward acceleration
@@ -126,12 +126,12 @@ void phase_changer::traverse()
     }
 }
 
-void phase_changer::fall()
+void phase_changer::vertical_movement()
 {
     if(yacceleration < 0) {
         if (yvelocity < 0) {
             ytimer->setInterval(1);
-            setPos(x(), y() + 2);
+            setPos(x(), y() + 3);
         } else {
             yvelocity = -1;
         }
