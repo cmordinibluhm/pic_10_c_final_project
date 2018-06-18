@@ -5,6 +5,10 @@ By Casey Mordini-Bluhm
 ## YouTube Demo 
 how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
+[![YouTube Demo](http://img.youtube.com/vi/fopMCV1YH5U/0.jpg)](https://youtu.be/fopMCV1YH5U)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fopMCV1YH5U?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ***
 
 ## Table of Contents
