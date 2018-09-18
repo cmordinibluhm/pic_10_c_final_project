@@ -17,6 +17,7 @@
         <file>bluebubble_still.png</file>
         <file>light_rain.png</file>
         <file>lava.png</file>
+        <file>water.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>hyperspace.mp3</file>

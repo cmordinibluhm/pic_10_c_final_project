@@ -30,13 +30,15 @@ SOURCES += \
     phase_changer.cpp \
     surface.cpp \
     objective.cpp \
-    spikes.cpp
+    spikes.cpp \
+    water.cpp
 
 HEADERS += \
     phase_changer.h \
     surface.h \
     objective.h \
-    spikes.h
+    spikes.h \
+    water.h
 
 FORMS += \
         mainwindow.ui

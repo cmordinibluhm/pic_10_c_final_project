@@ -4,6 +4,7 @@
 #include "objective.h"
 #include "surface.h"
 #include "spikes.h"
+#include "water.h"
 #include <QGraphicsView>
 #include <QTimer>
 #include <QDebug>
@@ -111,7 +112,7 @@ int main(int argc, char *argv[])
 
     spikes * volcano_left = new spikes(my_scene,player,880,105,290,4);
     spikes * volcano_right= new spikes(my_scene,player,980,105,290,3);
-    spikes * volcano_lava = new spikes(my_scene,player,600,600,350,1);
+    //spikes * volcano_lava = new spikes(my_scene,player,600,600,350,1);
 
     spikes * mine_field1 = new spikes(my_scene,player,1400,470,40,2);
     spikes * mine_field2 = new spikes(my_scene,player,1450,370,40,2);
@@ -122,6 +123,10 @@ int main(int argc, char *argv[])
 
     spikes * tunnel_bottom = new spikes(my_scene,player,1600,600,700,1);
     spikes * tunnel_top = new spikes(my_scene,player,1600,470,600,2);
+
+    //---------------------------------------- water ------------------------------------------//
+
+    water * volcano = new water(my_scene,player,600,480,600,130);
 
     //---------------------------------------- music ------------------------------------------//
 
