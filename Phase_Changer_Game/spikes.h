@@ -11,6 +11,7 @@ class spikes : public QObject, public QGraphicsPolygonItem
 
     phase_changer * player;
     QGraphicsScene * scene;
+    QGraphicsTextItem * death_msg;
     int orientation;
 
 public:
@@ -20,6 +21,9 @@ public:
 public slots:
 
     void check_for_death();
+    void death_message();
+    void reset_message();
+
 
 };
 

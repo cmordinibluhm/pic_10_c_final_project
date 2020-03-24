@@ -5,6 +5,7 @@
 #include "surface.h"
 #include "spikes.h"
 #include "water.h"
+#include "game_text.h"
 #include <QGraphicsView>
 #include <QTimer>
 #include <QDebug>
@@ -74,6 +75,8 @@ int main(int argc, char *argv[])
 
     //-------------------------------------- surfaces -----------------------------------------//
 
+    surface * test = new surface(my_scene,player,0,250,100,150);
+
     surface * start = new surface(my_scene,player,0,350,100,150);
 
     surface * ground1 = new surface(my_scene,player,0,500,600,120);
@@ -89,7 +92,7 @@ int main(int argc, char *argv[])
     surface * volcano_midleft = new surface(my_scene,player, 625, 200,260, 150);
     surface * volcano_topleft = new surface(my_scene,player, 650, 100,235, 100);
 
-    surface * volcano_baseright = new surface(my_scene,player, 1005, 400,355, 100);
+    surface * volcano_baseright = new surface(my_scene,player, 1005, 400,355, 175);
     surface * volcano_botright = new surface(my_scene,player, 975, 350,325, 50);
     surface * volcano_midright = new surface(my_scene,player, 975, 200,300, 150);
     surface * volcano_topright = new surface(my_scene,player, 975, 100,275, 100);
@@ -126,7 +129,7 @@ int main(int argc, char *argv[])
 
     //---------------------------------------- water ------------------------------------------//
 
-    water * volcano = new water(my_scene,player,600,480,600,130);
+    //water * volcano = new water(my_scene,player,600,480,600,130);
 
     //---------------------------------------- music ------------------------------------------//
 
@@ -135,6 +138,19 @@ int main(int argc, char *argv[])
     music->play();
     music->setVolume(2);
 
+    //----------------------------------------- text ------------------------------------------//
+
+    QString string1 = "Use W to decrease density, and S to increase density.\nUse A and D to move left and right.";
+    game_text * text1 = new game_text(my_scene,player,string1,0,200,0,600);
+
+    QString string2 = "When in the gas state, you can only float a certain cumulative height.\nYou must land on a hard surface to reset.";
+    game_text * text2 = new game_text(my_scene,player,string2,250,650,0,600);
+
+    QString string3 = "Increase your density until you are liquid to flow under low obstacles.";
+    game_text * text3 = new game_text(my_scene,player,string3,650,1300,300,600);
+
+    QString string4 = "Can you figure out how to use\n the height limit to your advantage?";
+    game_text * text4 = new game_text(my_scene,player,string4,1500,2000,100,600);
 
     return a.exec();
 }

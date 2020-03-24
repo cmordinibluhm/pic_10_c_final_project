@@ -15,7 +15,7 @@ objective::objective(QGraphicsScene * _scene, phase_changer * _player) : scene(_
 void objective::end_dailogue()
 {
     if (!has_won && objective_image->collidesWithItem(player)) {
-        QGraphicsTextItem * end_msg = new QGraphicsTextItem("You win!");
+        QGraphicsTextItem * end_msg = new QGraphicsTextItem("You made it!");
         scene->addItem(end_msg);
         end_msg->setPos(player->x() - 400,player->y()-30);
         end_msg->setScale(5);

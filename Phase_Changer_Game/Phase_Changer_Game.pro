@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    game_text.cpp \
         main.cpp \
     phase_changer.cpp \
     surface.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     water.cpp
 
 HEADERS += \
+    game_text.h \
     phase_changer.h \
     surface.h \
     objective.h \

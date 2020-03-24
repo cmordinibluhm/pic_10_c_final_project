@@ -16,7 +16,7 @@ distance_risen(300) { //set phase to 1 (solid), x,y velocities to 0
     connect(xtimer, SIGNAL(timeout()), this, SLOT(update_view())); //connect xtimer to lateral traverse() function
 
     ytimer->start(30); //set ytimer interval
-    xtimer->start(1); //set xtimer interval
+    xtimer->start(15); //set xtimer interval
 
     playersounds = new QMediaPlayer();
     playersounds->setMedia(QUrl("qrc:/sounds/swoosh.mp3"));
@@ -25,7 +25,7 @@ distance_risen(300) { //set phase to 1 (solid), x,y velocities to 0
 
 void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 
-    if (event->key() == Qt::Key_Left) { // if LEFT
+    if (event->key() == Qt::Key_A) { // if LEFT
 
         if (phase == 0 ) {
             setPixmap(QPixmap(":/images/jeremiahs_poodle.png").transformed(QTransform().scale(-1,1)));
@@ -35,7 +35,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
         }
             xvelocity = -1;
 
-    } else if (event->key() == Qt::Key_Right) { // else if RIGHT
+    } else if (event->key() == Qt::Key_D) { // else if RIGHT
 
         if (phase == 2 ) {
             setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50).transformed(QTransform().scale(-1,1)));
@@ -45,7 +45,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
         }
         xvelocity = 1;
 
-    } else if (event->key() == Qt::Key_Up) { // else if UP
+    } else if (event->key() == Qt::Key_W) { // else if UP
 
         if ( phase == 0 ) { //if liquid
             setPixmap(QPixmap(":/images/my_ice_3.png"));
@@ -63,7 +63,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
             setPos(x(), y()-4); //boost to come out of contact with ground (fix this)
         }
 
-    } else if (event->key() == Qt::Key_Down) { // else if DOWN
+    } else if (event->key() == Qt::Key_S) { // else if DOWN
 
         if ( phase == 2 ) { //if gas
             setPixmap(QPixmap(":/images/my_ice_3.png"));
@@ -83,7 +83,7 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 
 void phase_changer::keyReleaseEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_Right) {
+    if (event->key() == Qt::Key_A || event->key() == Qt::Key_D) {
         xvelocity = 0;
 
         if (phase == 2) {
@@ -108,7 +108,7 @@ void phase_changer::vertical_movement()
 {
     if(yacceleration < 0) {
         if (yvelocity < 0) {
-            ytimer->setInterval(1);
+            ytimer->setInterval(15);
             setPos(x(), y() + 3);
         } else {
             yvelocity = -1;

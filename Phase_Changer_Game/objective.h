@@ -1,8 +1,6 @@
 #ifndef OBJECTIVE_H
 #define OBJECTIVE_H
 
-#include <QObject>
-#include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include "phase_changer.h"
 
