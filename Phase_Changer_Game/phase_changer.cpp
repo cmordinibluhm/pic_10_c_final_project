@@ -8,8 +8,8 @@ distance_risen(300) { //set phase to 1 (solid), x,y velocities to 0
 
     setPixmap(QPixmap(":/images/my_ice_3.png"));
 
-    ytimer = new QTimer(this); //timer for lateral movement
-    xtimer = new QTimer(this); //timer for vertical movement
+    xtimer = new QTimer(this); //timer for lateral movement
+    ytimer = new QTimer(this); //timer for vertical movement
 
     connect(ytimer, SIGNAL(timeout()), this, SLOT(vertical_movement())); //connect ytimer to vertical move() function
     connect(xtimer, SIGNAL(timeout()), this, SLOT(traverse())); //connect xtimer to lateral traverse() function
@@ -25,27 +25,37 @@ distance_risen(300) { //set phase to 1 (solid), x,y velocities to 0
 
 void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 
-    if (event->key() == Qt::Key_A) { // if LEFT
+    // LEFT
+    if (event->key() == Qt::Key_A || event->key() == Qt::Key_Left) {
+
+        xvelocity = -1;
 
         if (phase == 0 ) {
             setPixmap(QPixmap(":/images/jeremiahs_poodle.png").transformed(QTransform().scale(-1,1)));
         }
         if (phase == 2 ) {
-            setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50));
+            setPixmap(QPixmap(":/images/bluebubble_rightward.png").scaled(52,45).transformed(QTransform().scale(-1,1)));
         }
-            xvelocity = -1;
 
-    } else if (event->key() == Qt::Key_D) { // else if RIGHT
+        setPos(x() - 5, y()); //boost to come out of contact with ground (fix this)
+
+    // RIGHT
+    } else if (event->key() == Qt::Key_D || event->key() == Qt::Key_Right) {
+
+        xvelocity = 1;
 
         if (phase == 2 ) {
-            setPixmap(QPixmap(":/images/bluebubble.png").scaled(55,50).transformed(QTransform().scale(-1,1)));
+            setPixmap(QPixmap(":/images/bluebubble_rightward.png").scaled(52,45));
         }
         if (phase == 0 ) {
             setPixmap(QPixmap(":/images/jeremiahs_poodle.png"));
         }
-        xvelocity = 1;
 
-    } else if (event->key() == Qt::Key_W) { // else if UP
+        setPos(x() + 5, y()); //boost to come out of contact with ground (fix this)
+
+
+    // UP
+    } else if (event->key() == Qt::Key_W || event->key() == Qt::Key_Up) {
 
         if ( phase == 0 ) { //if liquid
             setPixmap(QPixmap(":/images/my_ice_3.png"));
@@ -55,15 +65,16 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
             yacceleration = -1;
 
         } else if (phase == 1 ) { //if solid
-            setPixmap(QPixmap(":/images/bluebubble_still.png").scaled(55,50));
+            setPixmap(QPixmap(":/images/bluebubble_still.png").scaled(47,47));
             phase = 2; //set to gas
             yvelocity = 1; //accelerate up
             yacceleration = 1;
 
-            setPos(x(), y()-4); //boost to come out of contact with ground (fix this)
+            setPos(x(), y()-10); //boost to come out of contact with ground (fix this)
         }
 
-    } else if (event->key() == Qt::Key_S) { // else if DOWN
+    // DOWN
+    } else if (event->key() == Qt::Key_S || event->key() == Qt::Key_Down) {
 
         if ( phase == 2 ) { //if gas
             setPixmap(QPixmap(":/images/my_ice_3.png"));
@@ -83,18 +94,17 @@ void phase_changer::keyPressEvent(QKeyEvent *event) { //when a key is pressed
 
 void phase_changer::keyReleaseEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_A || event->key() == Qt::Key_D) {
+    if (event->key() == Qt::Key_A || event->key() == Qt::Key_D || event->key() == Qt::Key_Left || event->key() == Qt::Key_Right) {
         xvelocity = 0;
 
         if (phase == 2) {
-            setPixmap(QPixmap(":/images/bluebubble_still.png").scaled(55,50));
+            setPixmap(QPixmap(":/images/bluebubble_still.png").scaled(47,47));
         }
 
     }
 }
 
-void phase_changer::traverse()
-{
+void phase_changer::traverse() {
 
     if (xvelocity < 0) {
         setPos(x()-3, y());
@@ -104,8 +114,8 @@ void phase_changer::traverse()
     }
 }
 
-void phase_changer::vertical_movement()
-{
+void phase_changer::vertical_movement() {
+
     if(yacceleration < 0) {
         if (yvelocity < 0) {
             ytimer->setInterval(15);

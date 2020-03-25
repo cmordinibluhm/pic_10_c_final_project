@@ -17,7 +17,7 @@ void objective::end_dailogue()
     if (!has_won && objective_image->collidesWithItem(player)) {
         QGraphicsTextItem * end_msg = new QGraphicsTextItem("You made it!");
         scene->addItem(end_msg);
-        end_msg->setPos(player->x() - 400,player->y()-30);
+        end_msg->setPos(player->x() - 500,player->y()-30);
         end_msg->setScale(5);
         end_msg->setDefaultTextColor(Qt::white);
         has_won = true;

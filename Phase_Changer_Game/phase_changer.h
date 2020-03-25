@@ -13,12 +13,13 @@ class phase_changer : public QObject, public QGraphicsPixmapItem {
 
     friend class surface;
 private:
+
+    QGraphicsView * my_view;
+
     int phase; //the current state of matter- 0 for liquid, 1 for solid, 2 for gas
 
     QTimer * xtimer; //timer for the player's horizontal movement
     QTimer * ytimer; //timer for the player's vertical movement
-
-    QGraphicsView * my_view;
 
 public:
 

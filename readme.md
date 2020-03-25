@@ -1,12 +1,11 @@
-# Phase Changer
+# Phase Change Game
 By Casey Mordini-Bluhm
 
 ***
-## YouTube Demo 
-how to embed a youtube video: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+## Demo 
 
-Click image to go to video
-[![YouTube Demo](http://img.youtube.com/vi/fopMCV1YH5U/0.jpg)](https://youtu.be/fopMCV1YH5U)
+Click the image to see a demo of the game on YouTube
+[![YouTube Demo](http://img.youtube.com/vi/pCPDkzQkjFc/0.jpg)](https://www.youtube.com/watch?v=pCPDkzQkjFc)
 
 ***
 
@@ -27,28 +26,28 @@ Manipulate your state in order to navigate the obstacles between you and the che
 
 ### Instructions
 
-UP- become less dense
+UP / W- become less dense
 
-DOWN- become more dense
+DOWN / S- become more dense
 
-LEFT- move left
+LEFT / A- move left
 
-RIGHT- move right
+RIGHT / D- move right
 
 ***
 
 ## Project Journal
 
-### Ideas
+### Initial Ideas
 
-- Add graphics
-    - Escape from laboratory?
-    - space
-- Add picture of controls
-- Add controls/instruction screen
-- Add enemies
-- Add hazards of some sort
-- add water
+:white_check_mark: Add a theme to the graphics
+    - [ ] Escape from laboratory?
+    :white_check_mark: space (done)
+- [ ] Add picture of controls
+:white_check_mark: Add instructions
+- [ ] Add enemies
+:white_check_mark: Add hazards of some sort
+- [ ] add water
 
 ### April 10, 2018
 Today I looked at some old PIC 10C final projects on YouTube and had the idea to do a phase changing game.
@@ -69,8 +68,7 @@ I just learned to start nano with -m for mouse support. Sweet!
 I talked to Stephanie last week and she gave me the idea of focusing on the physics. Her idea is basically to just do solid/liquid/gas solvers.
 Today I started digging into Qt following a YouTube tutorial from a former PIC 10C student.
     
-The "Playground" Qt project is the physics solid collision solver (IGNORE THIS)
-The "Phase Changer" Qt project is the platformer game.
+The "Phase Changer" Qt project is the side-scroller game.
 
 ### Commit 4
 Updated .gitignore to ignore build- and .pro.user.
@@ -95,7 +93,7 @@ GOAL: Need to decide whether the object should begin falling in the constructor,
     what state of matter it is in. If this is solid(1) or liquid(0), then the move() function calls the fall() function, and if it's gas(2), then the move() function calls the
     rise() function.
     
-Maybe I should make a custom collision function that let's me know if it is ontop of, next to, or below whatever it is colliding with.
+Maybe I should make a custom collision function that lets me know if it is on top of, next to, or below whatever it is colliding with.
     Alternatively I could have different objects for ceilings, floors, and walls (right and left walls) and the player could interact with each differently
     
 Also would like to allow for multiple key presses at once, so going diagonally. https://stackoverflow.com/questions/3081091/qt-multiple-key-combo-event
@@ -120,7 +118,7 @@ Changed "QTimer timer" to be a member of player class so that its interval can b
 Merged with master before attempting to make sideways collisions. Each question I look up leads to another and I now have exactly 40 tabs open in Chrome.
     Current approach is to use the itemAt(Position) method to see if there is an item at certain positions within the player...
     
-Okay, so after a fruitless effort to change the ymovement to be based on velocity member I decided to make an executive decision on how I'm going to go about collisions.
+Okay, so after a fruitless effort to change the y-movement to be based on a velocity member I decided to stop trying to be clever about how I'm going to go about collisions.
     I am passing a pointer to the player to every surface object that is made. Player's x and y velocities are now public. The surface class is composed of four sides identified
     as right, left, bottom, and top. The surface class has a public slot "collisiondetection" that is connected to a QTimer with an interval of 1 ms. Whenever a left or right
     surface member collides with the player, the players xvelocity is set to zero. So far this is working quite nicely.
@@ -158,10 +156,10 @@ The movement and collisions are working great!!
     The player no longer collides with standard QGraphicsItems, but only my own custom surface items(this is a good thing). The player accelerates when an obstruction is removed
     and can slide against walls when floating upward or falling downward.
     
-    BUGS:   By repeatedly switching between up and down you can embed youself into a surface. (FIXED)
+    BUGS:   By repeatedly switching between up and down you can embed yourself in a surface. (FIXED)
             If you go at a corner of a surface you can get inside of it. (MOSTLY FIXED)
             
-For the last two days git had refused to push to my remote repo. Every time I tried "git commmit -u origin master" the terminal froze. I tried several fixes recommended
+For the last two days git had refused to push to my remote repo. Every time I tried "git commit -u origin master" the terminal froze. I tried several fixes recommended
     online and nothing worked, but I tried the same command again after a few days and the push was successful! I don't know if it was a wifi-strength or network thing or what.
     
 Hard deadline is Monday in the week after finals.
@@ -224,9 +222,9 @@ I also reviewed the CCLE submission page which had some "Other things to keep in
 video demonstration of my project.
 
 ### Commit 16
-Pushed to github and reviewed markdown formatting again, made a few more changes with indenting and newlines.
+Pushed to GitHub and reviewed markdown formatting again, made a few more changes with indenting and newlines.
 
-Cleaned up main.cpp by organizing the main routine into sections such as "set the scene", "set up the view", "create the player". The "aesthetics" section will have all the declatations of graphics that the player does not collide with.
+Cleaned up main.cpp by organizing the main routine into sections such as "set the scene", "set up the view", "create the player". The "aesthetics" section will have all the declarations of graphics that the player does not collide with.
 The "surfaces" section will have all the surfaces the player collides with. I am also changing the names of the surfaces to be more descriptive.
 
 set my scene's stickyfocus tag to true so that you don't ever have to click on the player to resume using the arrow keys to control it.
@@ -250,7 +248,7 @@ After searching for quite a while for a new png for the solid state of my phase_
 I made a few different versions of my_ice.png and settled on one. My friend from high school who has been into making games for quite a while came to visit and made his own version of a puddle texture, and I decided to keep
 it because it looks good and for sentimental reasons. (Puddle artwork credit to Jeremiah Zagala).
 
-Anyways, hopefully I will be able to present the different iterations of my ice artwork here once I push to github and have their urls. I went with the third one:
+Anyways, hopefully I will be able to present the different iterations of my ice artwork here once I push to GitHub and have their urls. I went with the third one:
 
 ![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice.png)
 ![alt text](https://github.com/cmordinibluhm/pic_10_c_final_project/blob/master/Phase_Changer_Game/my_ice_2.png)
@@ -264,7 +262,7 @@ Now I am going to add a spikes class which will cause the player to return to th
 more flexibility than the other QGraphicsItems.
 
 SUCCESS: spikes class sends player back to the starting point successfully. The spikes only come to one point in the middle of the object, but it works. It's a little too touchy right now, in that the player gets sent back when it
-seems like it is far enough away that it shouldnt be. I might have to figure out how to add a hitbox to the phase_changer class.
+seems like it is far enough away that it shouldn't be. I might have to figure out how to add a hitbox to the phase_changer class.
 
 ### Commit 18
 
@@ -280,13 +278,13 @@ Added a lot more surfaces and spikes, and a few more graphics purely for decorat
 ### Commit 19
 Created a YouTube video and embedded an image of it with a link to the actual video.
 
-Commit numbers were off, so I looked at my commit history on github and fixed it.
+Commit numbers were off, so I looked at my commit history on GitHub and fixed it.
 
 ***
 
 ### Reflection
 This project was a really great learning experience and so enjoyable that I put off other schoolwork, stayed up very late, and even worked on it during other classes when I probably should have been paying attention. My friend has
-been wokring on his own videogames with gamemaker for years and I never got into it, but I have found that I really enjoy it.
+been working on his own video games with GameMaker for years and I never got into it, but I have found that I really enjoy it.
 
 I just started programming in the fall of this year, and I am happy with my progress. I never could motivate myself to learn programming before I enrolled in a class for it. This project is really the first time that I have been self motivated
 and actively researched and gained new programming knowledge by myself.
@@ -310,7 +308,7 @@ base classes and derived classes, multiple inheritance, Qt's built in virtual fu
 
 STL I didn't make use of STL containers but I did make use of special Qt containers. Instead of std::vector<T> I used QVector<QPointF> to store a collection of vertices for a QGraphicsPolygonItem. Each QPointF stores an x and a y value.
 
-Of oourse, I used git a lot and learned a lot about it, mostly from when things went wrong and I had to look through stackoverflow to figure out how to fix what I'd messed up. I'm now comfortable with enough commands and
+Of course, I used git a lot and learned a lot about it, mostly from when things went wrong and I had to look through Stack Overflow to figure out how to fix what I'd messed up. I'm now comfortable with enough commands and
 conventions that it isn't a burden to use git. In fact, it is enjoyable and helpful. I also learned some markdown and got to experiment a bit with that.
 
 #### What's Next?
@@ -326,7 +324,7 @@ I definitely am not done with this project. There's a lot to do, and it will con
 
 ### Resources
 
-The resources here represent just a fraction of the places that I visited and got some information from. Literally hundreds of webages have contributed to my still limited knowledge of Qt and game design.
+The resources here represent just a fraction of the places that I visited and got some information from. Hundreds more webpages helped boost my still limited knowledge of Qt and game design.
 
 YouTube Qt Game Tutorials by Abdullah Aghazada
 https://www.youtube.com/watch?v=9lqhMLFHj3A&index=0&list=PLMgDVIa0Pg8WrI9WmZR09xAbfXyfkqKWy
@@ -351,6 +349,9 @@ https://www.gamedev.net/forums/topic/170689-mp3-vs-wav-cpu-usage/
 
 Free PNG's
 https://pngtree.com/
+
+How to Embed a Youtube Video in Markdown
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 
 #### Classes

@@ -139,6 +139,7 @@ int main(int argc, char *argv[])
     music->setVolume(2);
 
     //----------------------------------------- text ------------------------------------------//
+    //game_text * text = new game_text(scene,player,string,xlow,xhigh,ylow,yhigh);
 
     QString string1 = "Use W to decrease density, and S to increase density.\nUse A and D to move left and right.";
     game_text * text1 = new game_text(my_scene,player,string1,0,200,0,600);
@@ -147,7 +148,7 @@ int main(int argc, char *argv[])
     game_text * text2 = new game_text(my_scene,player,string2,250,650,0,600);
 
     QString string3 = "Increase your density until you are liquid to flow under low obstacles.";
-    game_text * text3 = new game_text(my_scene,player,string3,650,1300,300,600);
+    game_text * text3 = new game_text(my_scene,player,string3,650,1300,400,600);
 
     QString string4 = "Can you figure out how to use\n the height limit to your advantage?";
     game_text * text4 = new game_text(my_scene,player,string4,1500,2000,100,600);

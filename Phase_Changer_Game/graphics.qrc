@@ -7,7 +7,6 @@
         <file>sundragon.png</file>
         <file>cloud.png</file>
         <file>my_puddle.png</file>
-        <file>bluebubble.png</file>
         <file>my_ice.png</file>
         <file>my_ice_2.png</file>
         <file>my_ice_3.png</file>
@@ -18,6 +17,7 @@
         <file>light_rain.png</file>
         <file>lava.png</file>
         <file>water.png</file>
+        <file>bluebubble_rightward.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>hyperspace.mp3</file>
